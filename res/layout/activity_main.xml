@@ -35,7 +35,7 @@
         
   
      <TextView
-       	 	android:id="@+id/txt_view"
+       	 	android:id="@+id/about_us"
    			android:textSize="30px"
    			android:textStyle="bold"
    			android:layout_height="fill_parent"
@@ -43,7 +43,13 @@
    			android:gravity="center"/>
    			
    	 
-        
+      <ImageView
+       	 	android:id="@+id/invitation_image"
+   			android:textSize="30px"
+   			android:textStyle="bold"
+   			android:layout_height="fill_parent"
+   			android:layout_width="fill_parent"
+   			android:gravity="center"/>   
 
     <!--
          android:layout_gravity="start" tells DrawerLayout to treat

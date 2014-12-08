@@ -10,12 +10,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.premram.marchwed.map.MapRenderer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.content.Context;
@@ -107,50 +109,38 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        	
+        	
+        	
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
                 
+                FragmentActivity fragActivity = getActivity();
+                TextView txtView = (TextView) fragActivity.findViewById(R.id.about_us);
+                MapRenderer mapRenderer = new MapRenderer(fragActivity,getFragmentManager());
           
-                if(position == 2) {
-                	
-                	LatLng mdm = new LatLng(13.045942, 80.269322);
-                	
-                	Log.i("com.premram.marchwed--->", ((Integer)view.getId()).toString());
-                	
-                	FrameLayout mainLayout = (FrameLayout) getActivity().findViewById(R.id.map_container);
-                	
-                	mainLayout.setVisibility(View.VISIBLE);
-                	
-                	SupportMapFragment mapFrag = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
-                	
-                	
-                	
-                	GoogleMap map = mapFrag.getMap();
-                	
-                	Marker kiel = map.addMarker(new MarkerOptions()
-                		        .position(mdm)
-                		        .title("L Balasubramaniam Hall AIOBEU SWASTIKA")
-                		        .snippet("My Wedding Venue")
-                		        .icon(BitmapDescriptorFactory
-                		            .fromResource(R.drawable.ic_launcher)));
-
-                		    // Move the camera instantly to hamburg with a zoom of 15.
-                		    map.moveCamera(CameraUpdateFactory.newLatLngZoom(mdm, 15));
-
-                		    // Zoom in, animating the camera.
-                		    map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-                } else {
-                	
-                	FrameLayout mainLayout = (FrameLayout) getActivity().findViewById(R.id.map_container);
-                	
-                	mainLayout.setVisibility(View.GONE);
-                	
-                	TextView txtView = (TextView) getActivity().findViewById(R.id.txt_view);
-                	
-                	txtView.setText("TextView Position"+Integer.toString(position));
+                if(position == 0) {
+                	mapRenderer.setVisible(View.GONE);
+                	txtView.setVisibility(View.GONE);
+                } 
+                else if(position == 1) {
+                	mapRenderer.setVisible(View.GONE);
+                	txtView.setVisibility(View.VISIBLE);
+            	  	txtView.setText("About us goes here");
                 }
-                
+                //Wedding venue
+                else if(position == 2) {
+                	txtView.setVisibility(View.GONE);
+                	
+                	mapRenderer.setVisible(View.VISIBLE);
+                	mapRenderer.setLongitude(80.269322);
+                	mapRenderer.setLatitude(13.045942);
+                	mapRenderer.setLocTitle("L Balasubramaniam Hall AIOBEU SWASTIKA");
+                	mapRenderer.setLocSnippet("My Wedding Venue");
+                	
+                	mapRenderer.renderMap();
+                }   
                 
             
             }
