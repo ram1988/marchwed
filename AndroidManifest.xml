@@ -30,16 +30,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-         <activity
-            android:name=".EntryActivity"
-            android:label="@string/app_name" >
-            
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+     
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -49,7 +40,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
 
@@ -60,7 +51,15 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCbiv_4bMmjOd-SryqyniA2dNpXJnM_zFY" />
 
-        
+        <activity
+            android:name=".WelcomePageActivity"
+            android:label="@string/title_activity_welcome_page" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

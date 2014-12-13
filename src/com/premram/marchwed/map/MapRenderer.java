@@ -46,7 +46,7 @@ public class MapRenderer {
     		        .title(locTitle)
     		        .snippet(locSnippet)
     		        .icon(BitmapDescriptorFactory
-    		            .fromResource(R.drawable.ic_locator)));
+    		            .fromResource(R.drawable.ic_location)));
 
     	map.moveCamera(CameraUpdateFactory.newLatLngZoom(mdm, 215));
 

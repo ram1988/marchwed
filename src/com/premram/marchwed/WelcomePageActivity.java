@@ -1,32 +1,26 @@
 package com.premram.marchwed;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class EntryActivity extends Activity {
+public class WelcomePageActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_entry);
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		setContentView(R.layout.activity_welcome_page);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.entry, menu);
+		getMenuInflater().inflate(R.menu.welcome_page, menu);
 		return true;
 	}
 
@@ -41,21 +35,18 @@ public class EntryActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_entry,
-					container, false);
-			return rootView;
+	
+	public void welcomeButton(View view) {
+		//get the passcode from the input text.. compare and then allow to pass
+		EditText txt = (EditText)findViewById(R.id.invite_code);
+		String enteredTxt = txt.getText().toString();
+		
+		if(enteredTxt.equals("07032015")) {
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+		} else {
+			Toast toast = Toast.makeText(getApplicationContext(), "Invalid Invite Code!!!", Toast.LENGTH_SHORT);
+			toast.show();
 		}
 	}
 }
