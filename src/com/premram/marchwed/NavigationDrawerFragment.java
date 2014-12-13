@@ -126,11 +126,32 @@ public class NavigationDrawerFragment extends Fragment {
                 } 
                 else if(position == 1) {
                 	mapRenderer.setVisible(View.GONE);
+                	txtView.setVisibility(View.GONE);
+                	Integer[] imageIDs = {
+                			 R.drawable.ic_location,
+                			 R.drawable.wedding_image,
+                			 };
+                	
+                /*	Gallery gallery = (Gallery) findViewById(R.id.gallery1);
+                	 gallery.setAdapter(new ImageAdapter(this));
+                	 gallery.setOnItemClickListener(new OnItemClickListener() {
+                	 public void onItemClick(AdapterView<?> parent, View v, int position,long id)
+                	 {
+                	 Toast.makeText(getBaseContext(),"pic" + (position + 1) + " selected",
+                	 Toast.LENGTH_SHORT).show();
+                	 // display the images selected
+                	 ImageView imageView = (ImageView) findViewById(R.id.image1);
+                	 imageView.setImageResource(imageIDs[position]);
+                	 }
+                	 */
+                }
+                else if(position == 2) {
+                	mapRenderer.setVisible(View.GONE);
                 	txtView.setVisibility(View.VISIBLE);
             	  	txtView.setText("About us goes here");
                 }
                 //Wedding venue
-                else if(position == 2) {
+                else if(position == 3) {
                 	txtView.setVisibility(View.GONE);
                 	
                 	mapRenderer.setVisible(View.VISIBLE);
@@ -142,6 +163,7 @@ public class NavigationDrawerFragment extends Fragment {
                 	mapRenderer.renderMap();
                 }   
                 
+                
             
             }
         });
@@ -151,6 +173,7 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.title_section1),
+                        getString(R.string.title_section4),
                         getString(R.string.title_section2),
                         getString(R.string.title_section3),
                 }));

@@ -5,14 +5,12 @@
     <string name="title_section1">Invitation</string>
     <string name="title_section2">About Us</string>
     <string name="title_section3">Venue</string>
+    <string name="title_section4">Engagement Photos</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_entry">EntryActivity</string>
-    <string name="hello_world1">Prem Prakashini</string>
-    <string name="hello_world2">Weds</string>
-    <string name="hello_world3">Ram Narayan</string>
     <string name="title_activity_welcome_page">PrakashiniRam-திருமணம்-Wedding</string>
 
 </resources>
