@@ -56,7 +56,14 @@
         android:src="@drawable/pic1" />
 	</LinearLayout>-->        	
         
-  
+  	<TextView
+       	 	android:id="@+id/invitation"
+   			android:textSize="30px"
+   			android:textStyle="bold"
+   			android:layout_height="fill_parent"
+   			android:layout_width="fill_parent"
+   			android:gravity="left"
+   			android:scrollbars = "vertical"/>
      <TextView
        	 	android:id="@+id/about_us"
    			android:textSize="30px"

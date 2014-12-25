@@ -20,6 +20,8 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -102,10 +104,48 @@ public class NavigationDrawerFragment extends Fragment {
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
     }
+    
+    private void initializeView() {
+    	TextView invitationView = (TextView) getActivity().findViewById(R.id.invitation);
+    	
+    	StringBuffer sb = new StringBuffer();
+    	sb.append("<p style='align:left'>There were two hearts living in different places in Chennai.</p>");
+    	sb.append("<p align=left>These two hearts had not known each other for long time that it would unite forever.</p>");
+    	sb.append("<p align=left>Time arrived for bondage. Two hearts web crawled the matrimony and found each other. </p>");
+    	sb.append("<p align=left>Two hearts were engaged on September 7, 2014.</p>");
+    	sb.append("<p align=left>Now, It's the time for the hearts to live unitedly and love each other forever.</p>");
+    	sb.append("<p align=left>Okay!!! Whom these hearts belong to?. It's none other than us</p>");
+    	sb.append("<p></p>");
+    	sb.append("<p align=center>					Ram Narayan.M</p>");
+    	sb.append("<p align=center>					         and</p>");
+    	sb.append("<p align=center>					Prem Prakasini.G</p>");
+    	sb.append("<p></p>");
+    	sb.append("<p align=left>To make this auspicious occassion of unison of two hearts in grand level with our friends and relatives,</p>");
+    	sb.append("<p align=left>We cordially invite you all for our wedding. </p>");
+    	sb.append("<p align=left>Wedding grandness is not just about rich decorations, gifts and variety food. </p>");
+    	sb.append("<p align=left>It's about the presence of PEOPLE. </p>");
+    	sb.append("<p></p>");
+    	sb.append("<p align=left>So, again We invite you all to make our Wedding, a Great Gala Wedding!!!</p>");
+    	
+    	invitationView.setText(Html.fromHtml(sb.toString()));
+    	invitationView.setMovementMethod(new ScrollingMovementMethod());
+    	
+    	TextView txtView = (TextView) getActivity().findViewById(R.id.about_us);
+    	txtView.setVisibility(View.GONE);
+    	
+    	sb = new StringBuffer();
+    	sb.append("<p><u>Wedding Reception</u>: March 7, 2015");
+    	sb.append("<p><u>Muhurtham</u>: March 8, 2015");
+    	
+    	txtView.setText(Html.fromHtml(sb.toString()));
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+    	
+    	    	
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,16 +157,19 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
                 
                 FragmentActivity fragActivity = getActivity();
+                TextView invitationView = (TextView) fragActivity.findViewById(R.id.invitation);
                 TextView txtView = (TextView) fragActivity.findViewById(R.id.about_us);
                 MapRenderer mapRenderer = new MapRenderer(fragActivity,getFragmentManager());
           
                 if(position == 0) {
                 	mapRenderer.setVisible(View.GONE);
                 	txtView.setVisibility(View.GONE);
+                	invitationView.setVisibility(View.VISIBLE);
                 } 
                 else if(position == 1) {
                 	mapRenderer.setVisible(View.GONE);
                 	txtView.setVisibility(View.GONE);
+                	invitationView.setVisibility(View.GONE);
                 	Integer[] imageIDs = {
                 			 R.drawable.ic_location,
                 			 R.drawable.wedding_image,
@@ -147,12 +190,13 @@ public class NavigationDrawerFragment extends Fragment {
                 }
                 else if(position == 2) {
                 	mapRenderer.setVisible(View.GONE);
+                	invitationView.setVisibility(View.GONE);
                 	txtView.setVisibility(View.VISIBLE);
-            	  	txtView.setText("About us goes here");
                 }
                 //Wedding venue
                 else if(position == 3) {
                 	txtView.setVisibility(View.GONE);
+                	invitationView.setVisibility(View.GONE);
                 	
                 	mapRenderer.setVisible(View.VISIBLE);
                 	mapRenderer.setLongitude(80.269322);
@@ -257,6 +301,8 @@ public class NavigationDrawerFragment extends Fragment {
         });
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        initializeView();
+    	
     }
 
     private void selectItem(int position) {
