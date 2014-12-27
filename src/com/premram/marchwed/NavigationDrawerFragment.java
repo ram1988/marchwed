@@ -155,6 +155,11 @@ public class NavigationDrawerFragment extends Fragment {
     	mapRenderer.setLocTitle("L Balasubramaniam Hall AIOBEU SWASTIKA");
     	mapRenderer.setLocSnippet("My Wedding Venue");
     	
+    	/*
+    	 * Map rendered at first in order to reduce the interaction with the google map server.
+    	 * Just that the layout is being hidden/displayed at each time
+    	 */
+    	mapRenderer.renderMap();
     	
     	toggleMenuStates(0);
     }
@@ -170,11 +175,6 @@ public class NavigationDrawerFragment extends Fragment {
         mapRenderer.setVisible(toggleStates[0]);
     	txtView.setVisibility(toggleStates[1]);
     	invitationView.setVisibility(toggleStates[2]);
-    	
-    	if(mapRenderer.getVisible() == View.VISIBLE) {
-    		mapRenderer.renderMap();
-    	}
-    	
     }
     
     @Override
