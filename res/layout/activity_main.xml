@@ -63,6 +63,7 @@
    			android:layout_height="fill_parent"
    			android:layout_width="fill_parent"
    			android:gravity="left"
+   			android:background="@drawable/wedding_invite_bg"
    			android:scrollbars = "vertical"/>
      <TextView
        	 	android:id="@+id/about_us"
@@ -70,17 +71,10 @@
    			android:textStyle="bold"
    			android:layout_height="fill_parent"
    			android:layout_width="fill_parent"
+   			android:background="@drawable/wedding_invite_bg"
    			android:gravity="center"/>
    			
-   	 
-      <ImageView
-       	 	android:id="@+id/invitation_image"
-   			android:textSize="30px"
-   			android:textStyle="bold"
-   			android:layout_height="fill_parent"
-   			android:layout_width="fill_parent"
-   			android:gravity="center"/>   
-
+   	
     <!--
          android:layout_gravity="start" tells DrawerLayout to treat
          this as a sliding drawer on the left side for left-to-right

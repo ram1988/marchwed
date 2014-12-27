@@ -76,8 +76,19 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    
+    private Integer[][] toggleMenuStates;
+    private MapRenderer mapRenderer;
 
     public NavigationDrawerFragment() {
+    	
+    	toggleMenuStates = new Integer[4][];
+    	
+    	//ToggleStateOrder - Map, About us, Invitation
+    	toggleMenuStates[0] = new Integer[]{View.GONE,View.GONE,View.VISIBLE};
+    	toggleMenuStates[1] = new Integer[]{View.GONE,View.GONE,View.GONE};
+    	toggleMenuStates[2] = new Integer[]{View.GONE,View.VISIBLE,View.GONE};
+    	toggleMenuStates[3] = new Integer[]{View.VISIBLE,View.GONE,View.GONE};
     }
 
     @Override
@@ -109,19 +120,17 @@ public class NavigationDrawerFragment extends Fragment {
     	TextView invitationView = (TextView) getActivity().findViewById(R.id.invitation);
     	
     	StringBuffer sb = new StringBuffer();
-    	sb.append("<p style='align:left'>There were two hearts living in different places in Chennai.</p>");
-    	sb.append("<p align=left>These two hearts had not known each other for long time that it would unite forever.</p>");
+    	sb.append("<p style='align:left'>There were two hearts living in different places in Chennai.");
+    	sb.append(" These two hearts had not known each other for long time that it would unite forever.</p>");
     	sb.append("<p align=left>Time arrived for bondage. Two hearts web crawled the matrimony and found each other. </p>");
-    	sb.append("<p align=left>Two hearts were engaged on September 7, 2014.</p>");
+    	sb.append("<p align=left>Two hearts were engaged on <font color=blue>September 7, 2014.</font></p>");
     	sb.append("<p align=left>Now, It's the time for the hearts to live unitedly and love each other forever.</p>");
     	sb.append("<p align=left>Okay!!! Whom these hearts belong to?. It's none other than us</p>");
     	sb.append("<p></p>");
-    	sb.append("<p align=center>					Ram Narayan.M</p>");
-    	sb.append("<p align=center>					         and</p>");
-    	sb.append("<p align=center>					Prem Prakasini.G</p>");
+    	sb.append("<p style='align:left'>			Ram Narayan.M and Prem Prakasini.G			</p>");
     	sb.append("<p></p>");
-    	sb.append("<p align=left>To make this auspicious occassion of unison of two hearts in grand level with our friends and relatives,</p>");
-    	sb.append("<p align=left>We cordially invite you all for our wedding. </p>");
+    	sb.append("<p align=left>To make this auspicious occassion of unison of two hearts in grand level with our friends and relatives, ");
+    	sb.append(" We cordially invite you all for our wedding. </p>");
     	sb.append("<p align=left>Wedding grandness is not just about rich decorations, gifts and variety food. </p>");
     	sb.append("<p align=left>It's about the presence of PEOPLE. </p>");
     	sb.append("<p></p>");
@@ -131,16 +140,43 @@ public class NavigationDrawerFragment extends Fragment {
     	invitationView.setMovementMethod(new ScrollingMovementMethod());
     	
     	TextView txtView = (TextView) getActivity().findViewById(R.id.about_us);
-    	txtView.setVisibility(View.GONE);
+    	//txtView.setVisibility(View.GONE);
     	
     	sb = new StringBuffer();
     	sb.append("<p><u>Wedding Reception</u>: March 7, 2015");
     	sb.append("<p><u>Muhurtham</u>: March 8, 2015");
     	
     	txtView.setText(Html.fromHtml(sb.toString()));
-
+    	
+    	mapRenderer = new MapRenderer(getActivity(),getFragmentManager());
+    	//mapRenderer.setVisible(View.GONE);
+    	mapRenderer.setLongitude(80.269322);
+    	mapRenderer.setLatitude(13.045942);
+    	mapRenderer.setLocTitle("L Balasubramaniam Hall AIOBEU SWASTIKA");
+    	mapRenderer.setLocSnippet("My Wedding Venue");
+    	
+    	
+    	toggleMenuStates(0);
     }
 
+    
+    private void toggleMenuStates(int position) {
+    	FragmentActivity fragActivity = getActivity();
+        TextView invitationView = (TextView) fragActivity.findViewById(R.id.invitation);
+        TextView txtView = (TextView) fragActivity.findViewById(R.id.about_us);
+        
+        
+        Integer[] toggleStates = toggleMenuStates[position];
+        mapRenderer.setVisible(toggleStates[0]);
+    	txtView.setVisibility(toggleStates[1]);
+    	invitationView.setVisibility(toggleStates[2]);
+    	
+    	if(mapRenderer.getVisible() == View.VISIBLE) {
+    		mapRenderer.renderMap();
+    	}
+    	
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -154,61 +190,10 @@ public class NavigationDrawerFragment extends Fragment {
         	
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
+                selectItem(position);          
+                toggleMenuStates(position);
                 
-                FragmentActivity fragActivity = getActivity();
-                TextView invitationView = (TextView) fragActivity.findViewById(R.id.invitation);
-                TextView txtView = (TextView) fragActivity.findViewById(R.id.about_us);
-                MapRenderer mapRenderer = new MapRenderer(fragActivity,getFragmentManager());
-          
-                if(position == 0) {
-                	mapRenderer.setVisible(View.GONE);
-                	txtView.setVisibility(View.GONE);
-                	invitationView.setVisibility(View.VISIBLE);
-                } 
-                else if(position == 1) {
-                	mapRenderer.setVisible(View.GONE);
-                	txtView.setVisibility(View.GONE);
-                	invitationView.setVisibility(View.GONE);
-                	Integer[] imageIDs = {
-                			 R.drawable.ic_location,
-                			 R.drawable.wedding_image,
-                			 };
-                	
-                /*	Gallery gallery = (Gallery) findViewById(R.id.gallery1);
-                	 gallery.setAdapter(new ImageAdapter(this));
-                	 gallery.setOnItemClickListener(new OnItemClickListener() {
-                	 public void onItemClick(AdapterView<?> parent, View v, int position,long id)
-                	 {
-                	 Toast.makeText(getBaseContext(),"pic" + (position + 1) + " selected",
-                	 Toast.LENGTH_SHORT).show();
-                	 // display the images selected
-                	 ImageView imageView = (ImageView) findViewById(R.id.image1);
-                	 imageView.setImageResource(imageIDs[position]);
-                	 }
-                	 */
-                }
-                else if(position == 2) {
-                	mapRenderer.setVisible(View.GONE);
-                	invitationView.setVisibility(View.GONE);
-                	txtView.setVisibility(View.VISIBLE);
-                }
-                //Wedding venue
-                else if(position == 3) {
-                	txtView.setVisibility(View.GONE);
-                	invitationView.setVisibility(View.GONE);
-                	
-                	mapRenderer.setVisible(View.VISIBLE);
-                	mapRenderer.setLongitude(80.269322);
-                	mapRenderer.setLatitude(13.045942);
-                	mapRenderer.setLocTitle("L Balasubramaniam Hall AIOBEU SWASTIKA");
-                	mapRenderer.setLocSnippet("My Wedding Venue");
-                	
-                	mapRenderer.renderMap();
-                }   
-                
-                
-            
+                Log.i("ItemClickee", position+" is selected**************");      
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
