@@ -41,14 +41,132 @@
    			android:gravity="left"
    			android:background="@drawable/wedding_invite_bg"
    			android:scrollbars = "vertical"/>
-     <TextView
+  	
+     <TableLayout
        	 	android:id="@+id/about_us"
    			android:textSize="30px"
    			android:textStyle="bold"
    			android:layout_height="fill_parent"
    			android:layout_width="fill_parent"
    			android:background="@drawable/wedding_invite_bg"
-   			android:gravity="center"/>
+   			android:gravity="center">
+       	 	
+       <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+ 
+        <TextView
+            android:id="@+id/textView1"
+            android:text="Wedding Reception"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+ 
+        </TableRow>
+        
+     
+    
+        <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+ 
+       <TextView
+            android:id="@+id/textView2"
+            android:text="7:00 pm-9:00 pm, Saturday, March 7, 2015"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+ 
+    </TableRow>
+    
+        <TableRow
+        android:id="@+id/tableRow8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+ 
+       <TextView
+            android:id="@+id/textView10"
+            android:textStyle="bold"
+            android:text="Indian Carnatic Music Show"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+ 
+    </TableRow>
+    
+          <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+ 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+            android:text="Scintillating Music Programme Rendered by Sri.T.V.K. Vikaasa Ramdas (Disciple of Padma Shree Mandolin U.Srinivas)"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+       
+    </TableRow>
+    
+          <TableRow
+        android:id="@+id/tableRow6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+ 
+        <TextView
+            android:id="@+id/textView6"
+            android:textStyle="bold"
+            android:text="Dinner"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        </TableRow>
+ 		
+ 		<TableRow
+        android:id="@+id/tableRow7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+        <TextView
+            android:id="@+id/textView7"
+            android:text="7:00 pm onwards"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+       
+    </TableRow>
+    
+       <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+ 
+        <TextView
+            android:id="@+id/textView3"
+            android:textStyle="bold"
+            android:text="Muhurtham"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+ 
+        </TableRow>
+        
+       <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+ 
+       <TextView
+            android:id="@+id/textView4"
+            android:text="9:00 am-10:30 am, Sunday, March 8, 2015"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+       
+    </TableRow>
+ 
+ 		
+	
+ 		
+ 
+       </TableLayout>
    			
    			
    			

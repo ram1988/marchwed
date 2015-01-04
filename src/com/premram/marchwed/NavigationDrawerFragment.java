@@ -10,6 +10,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.premram.marchwed.adapters.GalleryPageAdapter;
+import com.premram.marchwed.adapters.NavDrawerListAdapter;
 import com.premram.marchwed.map.MapRenderer;
 
 import android.support.v7.app.ActionBarActivity;
@@ -48,6 +50,7 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,7 +93,7 @@ public class NavigationDrawerFragment extends Fragment {
     private Integer[][] toggleMenuStates;
     private MapRenderer mapRenderer;
     private ViewPager viewPager;
-    private MyPagerAdapter pageAdapter;
+    private GalleryPageAdapter pageAdapter;
 
 	public int position;
     
@@ -152,22 +155,28 @@ public class NavigationDrawerFragment extends Fragment {
     	sb.append("<p align=left>So, again We invite you all to make our Wedding, a Great Gala Wedding happening in </p>");
     	sb.append("<p><u>Wedding Venue</u>:</p>");
     	sb.append("<p>AIOBEU SWASTIKA - L.BALASUBRAMANIAN HALL<br/>");
-    	sb.append("Old No.38, New No.10,7th Street, Dr.Radhakrishnan Salai,<br/>");
+    	sb.append("38/10, 7th Street, Dr.Radhakrishnan Salai (Opp. Children Garden School),<br/>");
     	sb.append("Mylapore, Chennai - 600 004</p>");
     	//Wedding Venue goes here
     	
     	invitationView.setText(Html.fromHtml(sb.toString()));
     	invitationView.setMovementMethod(new ScrollingMovementMethod());
     	
-    	TextView txtView = (TextView) getActivity().findViewById(R.id.about_us);
+    	//TableLayout txtView = (TableLayout) getActivity().findViewById(R.id.about_us);
     	//txtView.setVisibility(View.GONE);
     	
-    	sb = new StringBuffer();
+    	/*sb = new StringBuffer();
     	
-    	sb.append("<p><u>Wedding Reception</u>: 7 pm-9 pm, March 7, 2015");
-    	sb.append("<p><u>Muhurtham</u>: 6:30 am-8:30 am, March 8, 2015");
+    	sb.append("<table>");
+    	sb.append("<tr><td>Wedding Reception</td> <td>7:00 pm-9:00 pm, Saturday, March 7, 2015</td></tr>");
+    	sb.append("<tr><td>Muhurtham</td> <td> 9:00 am-10:30 am, Sunday, March 8, 2015</td></tr>");
+    	sb.append("<tr><td>Scintillating Music Programme</u>");
+    	sb.append("Rendered by <i><font color=blue>Sri.T.V.K. Vikaasa Ramdas</font> </i>(Disciple of Padma Shree Mandolin U.Srinivas)</td></tr>");
+    	sb.append("<tr><td>Dinner</td><td> 7:00 pm onwards</td></tr>");
+    	sb.append("</table>");
     	
     	txtView.setText(Html.fromHtml(sb.toString()));
+    	*/
     	
     	mapRenderer = new MapRenderer(getActivity(),getFragmentManager());
     	//mapRenderer.setVisible(View.GONE);
@@ -183,7 +192,7 @@ public class NavigationDrawerFragment extends Fragment {
     	mapRenderer.renderMap();
     	
     	viewPager = (ViewPager)getActivity().findViewById(R.id.myviewpager);
-    	pageAdapter = new MyPagerAdapter();
+    	pageAdapter = new GalleryPageAdapter(getActivity());
     	viewPager.setAdapter(pageAdapter);
 
     	
@@ -194,7 +203,7 @@ public class NavigationDrawerFragment extends Fragment {
     private void toggleMenuStates(int position) {
     	FragmentActivity fragActivity = getActivity();
         TextView invitationView = (TextView) fragActivity.findViewById(R.id.invitation);
-        TextView txtView = (TextView) fragActivity.findViewById(R.id.about_us);
+        TableLayout txtView = (TableLayout) fragActivity.findViewById(R.id.about_us);
        
         Integer[] toggleStates = toggleMenuStates[position];
         mapRenderer.setVisible(toggleStates[0]);
@@ -222,6 +231,14 @@ public class NavigationDrawerFragment extends Fragment {
                 Log.i("ItemClickee", position+" is selected**************");      
             }
         });
+        
+        String[] titles = new String[]{
+                getString(R.string.title_section1),
+                getString(R.string.title_section4),
+                getString(R.string.title_section2),
+                getString(R.string.title_section3),
+        };
+        
        /* mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
@@ -233,7 +250,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section3),
                 }));
                 */
-        mDrawerListView.setAdapter(new NavDrawerListAdapter());
+        mDrawerListView.setAdapter(new NavDrawerListAdapter(getActivity(),titles));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -410,114 +427,5 @@ public class NavigationDrawerFragment extends Fragment {
         void onNavigationDrawerItemSelected(int position);
     }
     
-    private class MyPagerAdapter extends PagerAdapter{
-    	  
-    	  int NumberOfPages = 4;
-    	  
-    	  int[] res = { 
-    	    R.drawable.eng1,
-    	    R.drawable.eng2,
-    	    R.drawable.eng3,
-    	    R.drawable.eng4,
-    	   };
-    	  int[] backgroundcolor = { 
-    	   0xFF101010,
-    	   0xFF202020,
-    	   0xFF303030,
-    	   0xFF404040,
-    	   0xFF505050};
-
-    	  @Override
-    	  public int getCount() {
-    	   return NumberOfPages;
-    	  }
-
-    	  @Override
-    	  public boolean isViewFromObject(View view, Object object) {
-    	   return view == object;
-    	  }
-
-    	  @Override
-    	  public Object instantiateItem(ViewGroup container, int position) {
-    	   
-    		  Log.i("ViewPagerAdapter00000", "Control reached here"); 
-    	      
-    		  
-    	      ImageView imageView = new ImageView(getActivity());
-    	      imageView.setImageResource(res[position]);
-    	      LayoutParams imageParams = new LayoutParams(
-    	        LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-    	      imageView.setLayoutParams(imageParams);
-    	      
-    	      //To add toast to show the scroll info
-    	      
-    	     
-    	      
-    	      ((ViewPager) container).addView(imageView, 0);
-    	      return imageView;
-    	   }
-
-    	  @Override
-    	  public void destroyItem(ViewGroup container, int position, Object object) {
-    		  ((ViewPager) container).removeView((ImageView)object);
-    	  }
-
-    	}
-    
-    	private class NavDrawerListAdapter extends BaseAdapter {
-    		
-    		private int[] image_icons = new int[] {R.drawable.invitation_icon,
-    									R.drawable.engagement_icon,
-    									R.drawable.itinerary_icon,
-    									R.drawable.map_icon
-    									};
-    		private String[] titles = new String[]{
-                    getString(R.string.title_section1),
-                    getString(R.string.title_section4),
-                    getString(R.string.title_section2),
-                    getString(R.string.title_section3),
-            	};
-    		
-			@Override
-			public int getCount() {
-				// TODO Auto-generated method stub
-				return image_icons.length;
-			}
-
-			@Override
-			public Object getItem(int pos) {
-				// TODO Auto-generated method stub
-				return titles[pos];
-			}
-
-			@Override
-			public long getItemId(int pos) {
-				// TODO Auto-generated method stub
-				return pos;
-			}
-
-			@Override
-			public View getView(int position, View view1, ViewGroup viewGrp) {
-				
-				if (view1 == null) {
-		            LayoutInflater mInflater = (LayoutInflater)
-		            		getActivity().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-		            view1 = mInflater.inflate(R.layout.fragment_main, null);
-		        }
-				
-				Log.i("NavDisplay---->","Position--->"+view1);
-				
-				ImageView iconView = (ImageView)view1.findViewById(R.id.icon);
-				TextView txtView = (TextView)view1.findViewById(R.id.section_label);
-				
-				iconView.setImageResource(image_icons[position]);
-				txtView.setText(titles[position]);
-				
-				Log.i("NavDisplay---->","ControlsSet");
-				
-				
-				return view1;
-			}
-    	}
 
 }
