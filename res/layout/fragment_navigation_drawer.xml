@@ -6,5 +6,6 @@
     android:choiceMode="singleChoice"
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
+    android:id="@+id/slider_list"
     tools:context="com.premram.marchwed.NavigationDrawerFragment" />
 

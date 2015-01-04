@@ -1460,17 +1460,25 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f02006f;
         public static final int common_signin_btn_text_pressed_light=0x7f020070;
         public static final int drawer_shadow=0x7f020071;
-        public static final int ic_drawer=0x7f020072;
-        public static final int ic_launcher=0x7f020073;
-        public static final int ic_location=0x7f020074;
-        public static final int ic_plusone_medium_off_client=0x7f020075;
-        public static final int ic_plusone_small_off_client=0x7f020076;
-        public static final int ic_plusone_standard_off_client=0x7f020077;
-        public static final int ic_plusone_tall_off_client=0x7f020078;
-        public static final int powered_by_google_dark=0x7f020079;
-        public static final int powered_by_google_light=0x7f02007a;
-        public static final int wedding_image=0x7f02007b;
-        public static final int wedding_invite_bg=0x7f02007c;
+        public static final int eng1=0x7f020072;
+        public static final int eng2=0x7f020073;
+        public static final int eng3=0x7f020074;
+        public static final int eng4=0x7f020075;
+        public static final int engagement_icon=0x7f020076;
+        public static final int ic_drawer=0x7f020077;
+        public static final int ic_launcher=0x7f020078;
+        public static final int ic_location=0x7f020079;
+        public static final int ic_plusone_medium_off_client=0x7f02007a;
+        public static final int ic_plusone_small_off_client=0x7f02007b;
+        public static final int ic_plusone_standard_off_client=0x7f02007c;
+        public static final int ic_plusone_tall_off_client=0x7f02007d;
+        public static final int invitation_icon=0x7f02007e;
+        public static final int itinerary_icon=0x7f02007f;
+        public static final int map_icon=0x7f020080;
+        public static final int powered_by_google_dark=0x7f020081;
+        public static final int powered_by_google_light=0x7f020082;
+        public static final int wedding_image=0x7f020083;
+        public static final int wedding_invite_bg=0x7f020084;
     }
     public static final class id {
         public static final int about_us=0x7f080053;
@@ -1485,12 +1493,12 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f080028;
         public static final int action_menu_presenter=0x7f080029;
         public static final int action_mode_close_button=0x7f080036;
-        public static final int action_settings=0x7f080059;
+        public static final int action_settings=0x7f08005b;
         public static final int activity_chooser_view_content=0x7f080037;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
         public static final int book_now=0x7f080010;
-        public static final int button1=0x7f080055;
+        public static final int button1=0x7f080056;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
@@ -1517,7 +1525,7 @@ containing a value of this type.
         public static final int ifRoom=0x7f08001d;
         public static final int image=0x7f080039;
         public static final int invitation=0x7f080052;
-        public static final int invite_code=0x7f080056;
+        public static final int invite_code=0x7f080057;
         public static final int listMode=0x7f080014;
         public static final int list_item=0x7f08003b;
         public static final int map=0x7f080051;
@@ -1525,7 +1533,8 @@ containing a value of this type.
         public static final int match_parent=0x7f08000c;
         public static final int middle=0x7f080024;
         public static final int monochrome=0x7f080013;
-        public static final int navigation_drawer=0x7f080054;
+        public static final int myviewpager=0x7f080054;
+        public static final int navigation_drawer=0x7f080055;
         public static final int never=0x7f08001c;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
@@ -1545,18 +1554,19 @@ containing a value of this type.
         public static final int search_plate=0x7f080048;
         public static final int search_src_text=0x7f080049;
         public static final int search_voice_btn=0x7f08004d;
-        public static final int section_label=0x7f080058;
+        public static final int section_label=0x7f080059;
         public static final int selectionDetails=0x7f08000b;
         public static final int shortcut=0x7f080040;
         public static final int showCustom=0x7f08001a;
         public static final int showHome=0x7f080017;
         public static final int showTitle=0x7f080019;
+        public static final int slider_list=0x7f08005a;
         public static final int split_action_bar=0x7f080030;
         public static final int strict_sandbox=0x7f080009;
         public static final int submit_area=0x7f08004b;
         public static final int tabMode=0x7f080015;
         public static final int terrain=0x7f080003;
-        public static final int textView1=0x7f080057;
+        public static final int textView1=0x7f080058;
         public static final int title=0x7f08003d;
         public static final int top_action_bar=0x7f080032;
         public static final int up=0x7f080033;
@@ -3582,6 +3592,25 @@ containing a value of this type.
           @attr name android:windowAnimationStyle
         */
         public static final int MenuView_android_windowAnimationStyle = 0;
+        /** Attributes that can be used with a MyGallery.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MyGallery_android_galleryItemBackground android:galleryItemBackground}</code></td><td></td></tr>
+           </table>
+           @see #MyGallery_android_galleryItemBackground
+         */
+        public static final int[] MyGallery = {
+            0x0101004c
+        };
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#galleryItemBackground}
+          attribute's value can be found in the {@link #MyGallery} array.
+          @attr name android:galleryItemBackground
+        */
+        public static final int MyGallery_android_galleryItemBackground = 0;
         /** Attributes that can be used with a SearchView.
            <p>Includes the following attributes:</p>
            <table>

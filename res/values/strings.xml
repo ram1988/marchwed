@@ -4,7 +4,7 @@
     <string name="app_name">eVivahaInvite</string>
     <string name="title_section1">Invitation</string>
     <string name="title_section2">Itinerary</string>
-    <string name="title_section3">Venue</string>
+    <string name="title_section3">Venue in Gmap</string>
     <string name="title_section4">Engagement Photos</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

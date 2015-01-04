@@ -19,12 +19,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -34,9 +38,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.Gallery;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,18 +89,23 @@ public class NavigationDrawerFragment extends Fragment {
     
     private Integer[][] toggleMenuStates;
     private MapRenderer mapRenderer;
+    private ViewPager viewPager;
+    private MyPagerAdapter pageAdapter;
 
+	public int position;
+    
     public NavigationDrawerFragment() {
     	
     	toggleMenuStates = new Integer[4][];
     	
-    	//ToggleStateOrder - Map, About us, Invitation
-    	toggleMenuStates[0] = new Integer[]{View.GONE,View.GONE,View.VISIBLE};
-    	toggleMenuStates[1] = new Integer[]{View.GONE,View.GONE,View.GONE};
-    	toggleMenuStates[2] = new Integer[]{View.GONE,View.VISIBLE,View.GONE};
-    	toggleMenuStates[3] = new Integer[]{View.VISIBLE,View.GONE,View.GONE};
+    	//ToggleStateOrder - Map, Photos, About us, Invitation
+    	toggleMenuStates[0] = new Integer[]{View.GONE,View.GONE,View.VISIBLE,View.GONE};
+    	toggleMenuStates[1] = new Integer[]{View.GONE,View.GONE,View.GONE,View.VISIBLE};
+    	toggleMenuStates[2] = new Integer[]{View.GONE,View.VISIBLE,View.GONE,View.GONE};
+    	toggleMenuStates[3] = new Integer[]{View.VISIBLE,View.GONE,View.GONE,View.GONE};
     }
 
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,14 +142,19 @@ public class NavigationDrawerFragment extends Fragment {
     	sb.append("<p align=left>Now, It's the time for the hearts to live unitedly and love each other forever.</p>");
     	sb.append("<p align=left>Okay!!! Whom these hearts belong to?. It's none other than us</p>");
     	sb.append("<p></p>");
-    	sb.append("<p style='align:left'>			Ram Narayan.M and Prem Prakasini.G			</p>");
+    	sb.append("<p style='align:left'>			<i><font color=blue>Ram Narayan.M</font></i> and <i><font color=blue>Prem Prakasini.G</font></i>			</p>");
     	sb.append("<p></p>");
     	sb.append("<p align=left>To make this auspicious occassion of unison of two hearts in grand level with our friends and relatives, ");
     	sb.append(" We cordially invite you all for our wedding. </p>");
     	sb.append("<p align=left>Wedding grandness is not just about rich decorations, gifts and variety food. </p>");
     	sb.append("<p align=left>It's about the presence of PEOPLE. </p>");
     	sb.append("<p></p>");
-    	sb.append("<p align=left>So, again We invite you all to make our Wedding, a Great Gala Wedding!!!</p>");
+    	sb.append("<p align=left>So, again We invite you all to make our Wedding, a Great Gala Wedding happening in </p>");
+    	sb.append("<p><u>Wedding Venue</u>:</p>");
+    	sb.append("<p>AIOBEU SWASTIKA - L.BALASUBRAMANIAN HALL<br/>");
+    	sb.append("Old No.38, New No.10,7th Street, Dr.Radhakrishnan Salai,<br/>");
+    	sb.append("Mylapore, Chennai - 600 004</p>");
+    	//Wedding Venue goes here
     	
     	invitationView.setText(Html.fromHtml(sb.toString()));
     	invitationView.setMovementMethod(new ScrollingMovementMethod());
@@ -143,8 +163,9 @@ public class NavigationDrawerFragment extends Fragment {
     	//txtView.setVisibility(View.GONE);
     	
     	sb = new StringBuffer();
-    	sb.append("<p><u>Wedding Reception</u>: March 7, 2015");
-    	sb.append("<p><u>Muhurtham</u>: March 8, 2015");
+    	
+    	sb.append("<p><u>Wedding Reception</u>: 7 pm-9 pm, March 7, 2015");
+    	sb.append("<p><u>Muhurtham</u>: 6:30 am-8:30 am, March 8, 2015");
     	
     	txtView.setText(Html.fromHtml(sb.toString()));
     	
@@ -152,7 +173,7 @@ public class NavigationDrawerFragment extends Fragment {
     	//mapRenderer.setVisible(View.GONE);
     	mapRenderer.setLongitude(80.269322);
     	mapRenderer.setLatitude(13.045942);
-    	mapRenderer.setLocTitle("L Balasubramaniam Hall AIOBEU SWASTIKA");
+    	mapRenderer.setLocTitle("AIOBEU SWASTIKA - L.BALASUBRAMANIAN HALL");
     	mapRenderer.setLocSnippet("My Wedding Venue");
     	
     	/*
@@ -161,7 +182,12 @@ public class NavigationDrawerFragment extends Fragment {
     	 */
     	mapRenderer.renderMap();
     	
-    	toggleMenuStates(0);
+    	viewPager = (ViewPager)getActivity().findViewById(R.id.myviewpager);
+    	pageAdapter = new MyPagerAdapter();
+    	viewPager.setAdapter(pageAdapter);
+
+    	
+    	toggleMenuStates(0);    	
     }
 
     
@@ -169,12 +195,12 @@ public class NavigationDrawerFragment extends Fragment {
     	FragmentActivity fragActivity = getActivity();
         TextView invitationView = (TextView) fragActivity.findViewById(R.id.invitation);
         TextView txtView = (TextView) fragActivity.findViewById(R.id.about_us);
-        
-        
+       
         Integer[] toggleStates = toggleMenuStates[position];
         mapRenderer.setVisible(toggleStates[0]);
     	txtView.setVisibility(toggleStates[1]);
     	invitationView.setVisibility(toggleStates[2]);
+    	viewPager.setVisibility(toggleStates[3]);
     }
     
     @Override
@@ -196,7 +222,7 @@ public class NavigationDrawerFragment extends Fragment {
                 Log.i("ItemClickee", position+" is selected**************");      
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+       /* mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
@@ -206,6 +232,8 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section2),
                         getString(R.string.title_section3),
                 }));
+                */
+        mDrawerListView.setAdapter(new NavDrawerListAdapter());
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -381,4 +409,115 @@ public class NavigationDrawerFragment extends Fragment {
          */
         void onNavigationDrawerItemSelected(int position);
     }
+    
+    private class MyPagerAdapter extends PagerAdapter{
+    	  
+    	  int NumberOfPages = 4;
+    	  
+    	  int[] res = { 
+    	    R.drawable.eng1,
+    	    R.drawable.eng2,
+    	    R.drawable.eng3,
+    	    R.drawable.eng4,
+    	   };
+    	  int[] backgroundcolor = { 
+    	   0xFF101010,
+    	   0xFF202020,
+    	   0xFF303030,
+    	   0xFF404040,
+    	   0xFF505050};
+
+    	  @Override
+    	  public int getCount() {
+    	   return NumberOfPages;
+    	  }
+
+    	  @Override
+    	  public boolean isViewFromObject(View view, Object object) {
+    	   return view == object;
+    	  }
+
+    	  @Override
+    	  public Object instantiateItem(ViewGroup container, int position) {
+    	   
+    		  Log.i("ViewPagerAdapter00000", "Control reached here"); 
+    	      
+    		  
+    	      ImageView imageView = new ImageView(getActivity());
+    	      imageView.setImageResource(res[position]);
+    	      LayoutParams imageParams = new LayoutParams(
+    	        LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+    	      imageView.setLayoutParams(imageParams);
+    	      
+    	      //To add toast to show the scroll info
+    	      
+    	     
+    	      
+    	      ((ViewPager) container).addView(imageView, 0);
+    	      return imageView;
+    	   }
+
+    	  @Override
+    	  public void destroyItem(ViewGroup container, int position, Object object) {
+    		  ((ViewPager) container).removeView((ImageView)object);
+    	  }
+
+    	}
+    
+    	private class NavDrawerListAdapter extends BaseAdapter {
+    		
+    		private int[] image_icons = new int[] {R.drawable.invitation_icon,
+    									R.drawable.engagement_icon,
+    									R.drawable.itinerary_icon,
+    									R.drawable.map_icon
+    									};
+    		private String[] titles = new String[]{
+                    getString(R.string.title_section1),
+                    getString(R.string.title_section4),
+                    getString(R.string.title_section2),
+                    getString(R.string.title_section3),
+            	};
+    		
+			@Override
+			public int getCount() {
+				// TODO Auto-generated method stub
+				return image_icons.length;
+			}
+
+			@Override
+			public Object getItem(int pos) {
+				// TODO Auto-generated method stub
+				return titles[pos];
+			}
+
+			@Override
+			public long getItemId(int pos) {
+				// TODO Auto-generated method stub
+				return pos;
+			}
+
+			@Override
+			public View getView(int position, View view1, ViewGroup viewGrp) {
+				
+				if (view1 == null) {
+		            LayoutInflater mInflater = (LayoutInflater)
+		            		getActivity().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+		            view1 = mInflater.inflate(R.layout.fragment_main, null);
+		        }
+				
+				Log.i("NavDisplay---->","Position--->"+view1);
+				
+				ImageView iconView = (ImageView)view1.findViewById(R.id.icon);
+				TextView txtView = (TextView)view1.findViewById(R.id.section_label);
+				
+				iconView.setImageResource(image_icons[position]);
+				txtView.setText(titles[position]);
+				
+				Log.i("NavDisplay---->","ControlsSet");
+				
+				
+				return view1;
+			}
+    	}
+
 }
