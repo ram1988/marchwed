@@ -41,6 +41,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -94,18 +95,20 @@ public class NavigationDrawerFragment extends Fragment {
     private MapRenderer mapRenderer;
     private ViewPager viewPager;
     private GalleryPageAdapter pageAdapter;
+    private WebView rsvpWebView;
 
 	public int position;
     
     public NavigationDrawerFragment() {
     	
-    	toggleMenuStates = new Integer[4][];
+    	toggleMenuStates = new Integer[5][];
     	
     	//ToggleStateOrder - Map, Photos, About us, Invitation
-    	toggleMenuStates[0] = new Integer[]{View.GONE,View.GONE,View.VISIBLE,View.GONE};
-    	toggleMenuStates[1] = new Integer[]{View.GONE,View.GONE,View.GONE,View.VISIBLE};
-    	toggleMenuStates[2] = new Integer[]{View.GONE,View.VISIBLE,View.GONE,View.GONE};
-    	toggleMenuStates[3] = new Integer[]{View.VISIBLE,View.GONE,View.GONE,View.GONE};
+    	toggleMenuStates[0] = new Integer[]{View.GONE,View.GONE,View.VISIBLE,View.GONE,View.GONE};
+    	toggleMenuStates[1] = new Integer[]{View.GONE,View.GONE,View.GONE,View.VISIBLE,View.GONE};
+    	toggleMenuStates[2] = new Integer[]{View.GONE,View.VISIBLE,View.GONE,View.GONE,View.GONE};
+    	toggleMenuStates[3] = new Integer[]{View.VISIBLE,View.GONE,View.GONE,View.GONE,View.GONE};
+    	toggleMenuStates[4] = new Integer[]{View.GONE,View.GONE,View.GONE,View.GONE,View.VISIBLE};
     }
 
     
@@ -195,6 +198,8 @@ public class NavigationDrawerFragment extends Fragment {
     	pageAdapter = new GalleryPageAdapter(getActivity());
     	viewPager.setAdapter(pageAdapter);
 
+    	rsvpWebView = (WebView) getActivity().findViewById(R.id.webview);
+    	rsvpWebView.loadUrl("http://premram.rsvpify.com/");
     	
     	toggleMenuStates(0);    	
     }
@@ -210,6 +215,7 @@ public class NavigationDrawerFragment extends Fragment {
     	txtView.setVisibility(toggleStates[1]);
     	invitationView.setVisibility(toggleStates[2]);
     	viewPager.setVisibility(toggleStates[3]);
+    	rsvpWebView.setVisibility(toggleStates[4]);
     }
     
     @Override
@@ -237,6 +243,7 @@ public class NavigationDrawerFragment extends Fragment {
                 getString(R.string.title_section4),
                 getString(R.string.title_section2),
                 getString(R.string.title_section3),
+                getString(R.string.title_section5),
         };
         
        /* mDrawerListView.setAdapter(new ArrayAdapter<String>(

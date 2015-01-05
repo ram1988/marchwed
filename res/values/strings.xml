@@ -6,6 +6,7 @@
     <string name="title_section2" translatable="false">Itinerary</string>
     <string name="title_section3" translatable="false">Venue in Gmap</string>
     <string name="title_section4" translatable="false">Engagement Photos</string>
+    <string name="title_section5" translatable="false">RSVP</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="action_example" translatable="false">Example action</string>

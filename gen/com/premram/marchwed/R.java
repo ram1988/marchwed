@@ -1481,7 +1481,7 @@ containing a value of this type.
         public static final int wedding_invite_bg=0x7f020084;
     }
     public static final class id {
-        public static final int about_us=0x7f080053;
+        public static final int about_us=0x7f080054;
         public static final int action_bar=0x7f08002e;
         public static final int action_bar_activity_content=0x7f080027;
         public static final int action_bar_container=0x7f08002d;
@@ -1493,12 +1493,12 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f080028;
         public static final int action_menu_presenter=0x7f080029;
         public static final int action_mode_close_button=0x7f080036;
-        public static final int action_settings=0x7f08006a;
+        public static final int action_settings=0x7f08006b;
         public static final int activity_chooser_view_content=0x7f080037;
         public static final int always=0x7f08001e;
         public static final int beginning=0x7f080023;
         public static final int book_now=0x7f080010;
-        public static final int button1=0x7f080066;
+        public static final int button1=0x7f080067;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
@@ -1524,8 +1524,8 @@ containing a value of this type.
         public static final int icon=0x7f08003c;
         public static final int ifRoom=0x7f08001d;
         public static final int image=0x7f080039;
-        public static final int invitation=0x7f080052;
-        public static final int invite_code=0x7f080067;
+        public static final int invitation=0x7f080053;
+        public static final int invite_code=0x7f080068;
         public static final int listMode=0x7f080014;
         public static final int list_item=0x7f08003b;
         public static final int map=0x7f080051;
@@ -1533,8 +1533,8 @@ containing a value of this type.
         public static final int match_parent=0x7f08000c;
         public static final int middle=0x7f080024;
         public static final int monochrome=0x7f080013;
-        public static final int myviewpager=0x7f080064;
-        public static final int navigation_drawer=0x7f080065;
+        public static final int myviewpager=0x7f080065;
+        public static final int navigation_drawer=0x7f080066;
         public static final int never=0x7f08001c;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
@@ -1554,38 +1554,39 @@ containing a value of this type.
         public static final int search_plate=0x7f080048;
         public static final int search_src_text=0x7f080049;
         public static final int search_voice_btn=0x7f08004d;
-        public static final int section_label=0x7f080068;
+        public static final int section_label=0x7f080069;
         public static final int selectionDetails=0x7f08000b;
         public static final int shortcut=0x7f080040;
         public static final int showCustom=0x7f08001a;
         public static final int showHome=0x7f080017;
         public static final int showTitle=0x7f080019;
-        public static final int slider_list=0x7f080069;
+        public static final int slider_list=0x7f08006a;
         public static final int split_action_bar=0x7f080030;
         public static final int strict_sandbox=0x7f080009;
         public static final int submit_area=0x7f08004b;
         public static final int tabMode=0x7f080015;
-        public static final int tableRow1=0x7f080054;
-        public static final int tableRow2=0x7f080056;
-        public static final int tableRow3=0x7f080060;
-        public static final int tableRow4=0x7f080062;
-        public static final int tableRow5=0x7f08005a;
-        public static final int tableRow6=0x7f08005c;
-        public static final int tableRow7=0x7f08005e;
-        public static final int tableRow8=0x7f080058;
+        public static final int tableRow1=0x7f080055;
+        public static final int tableRow2=0x7f080057;
+        public static final int tableRow3=0x7f080061;
+        public static final int tableRow4=0x7f080063;
+        public static final int tableRow5=0x7f08005b;
+        public static final int tableRow6=0x7f08005d;
+        public static final int tableRow7=0x7f08005f;
+        public static final int tableRow8=0x7f080059;
         public static final int terrain=0x7f080003;
-        public static final int textView1=0x7f080055;
-        public static final int textView10=0x7f080059;
-        public static final int textView2=0x7f080057;
-        public static final int textView3=0x7f080061;
-        public static final int textView4=0x7f080063;
-        public static final int textView5=0x7f08005b;
-        public static final int textView6=0x7f08005d;
-        public static final int textView7=0x7f08005f;
+        public static final int textView1=0x7f080056;
+        public static final int textView10=0x7f08005a;
+        public static final int textView2=0x7f080058;
+        public static final int textView3=0x7f080062;
+        public static final int textView4=0x7f080064;
+        public static final int textView5=0x7f08005c;
+        public static final int textView6=0x7f08005e;
+        public static final int textView7=0x7f080060;
         public static final int title=0x7f08003d;
         public static final int top_action_bar=0x7f080032;
         public static final int up=0x7f080033;
         public static final int useLogo=0x7f080016;
+        public static final int webview=0x7f080052;
         public static final int withText=0x7f08001f;
         public static final int wrap_content=0x7f08000d;
     }
@@ -1694,8 +1695,8 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f06002e;
         public static final int accept=0x7f060002;
-        public static final int action_example=0x7f060037;
-        public static final int action_settings=0x7f060038;
+        public static final int action_example=0x7f060038;
+        public static final int action_settings=0x7f060039;
         public static final int app_name=0x7f060030;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
@@ -1799,17 +1800,18 @@ containing a value of this type.
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
         public static final int decline=0x7f060003;
-        public static final int navigation_drawer_close=0x7f060036;
-        public static final int navigation_drawer_open=0x7f060035;
+        public static final int navigation_drawer_close=0x7f060037;
+        public static final int navigation_drawer_open=0x7f060036;
         public static final int store_picture_message=0x7f060001;
         public static final int store_picture_title=0x7f060000;
-        public static final int title_activity_entry=0x7f060039;
-        public static final int title_activity_welcome_page=0x7f06003a;
+        public static final int title_activity_entry=0x7f06003a;
+        public static final int title_activity_welcome_page=0x7f06003b;
         public static final int title_section1=0x7f060031;
         public static final int title_section2=0x7f060032;
         public static final int title_section3=0x7f060033;
         public static final int title_section4=0x7f060034;
-        public static final int title_welcome_bar=0x7f06003b;
+        public static final int title_section5=0x7f060035;
+        public static final int title_welcome_bar=0x7f06003c;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */
