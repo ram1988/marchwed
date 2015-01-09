@@ -41,7 +41,9 @@ public class WelcomePageActivity extends Activity {
 		if(enteredTxt.equals("07032015")) {
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
+			
 		} else {
+			txt.setText("");
 			Toast toast = Toast.makeText(getApplicationContext(), "Invalid Invite Code!!!", Toast.LENGTH_SHORT);
 			toast.show();
 		}

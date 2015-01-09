@@ -33,11 +33,7 @@
         	class="com.google.android.gms.maps.SupportMapFragment" />
    		 </FrameLayout>
    
-	<WebView 
-    android:id="@+id/webview"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"/>
-     
+
      
   	<TextView
        	 	android:id="@+id/invitation"
@@ -174,7 +170,6 @@
  		
  
        </TableLayout>
-   			
    			
    			
        	 	<android.support.v4.view.ViewPager
