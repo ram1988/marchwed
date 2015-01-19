@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.premram.marchwed.adapters.CalendarEventAdder;
 import com.premram.marchwed.adapters.GalleryPageAdapter;
 import com.premram.marchwed.adapters.NavDrawerListAdapter;
 import com.premram.marchwed.map.MapRenderer;
@@ -138,13 +139,13 @@ public class NavigationDrawerFragment extends Fragment {
     
     private void initializeView() {
     	TextView invitationView = (TextView) getActivity().findViewById(R.id.invitation);
-    	
+    	    	   	
     	StringBuffer sb = new StringBuffer();
-    	sb.append("<p style='align:left'>There were two hearts living in different places in Chennai.");
+    	sb.append("<p style='align:left'>There were two hearts living at different places in Chennai.");
     	sb.append(" These two hearts had not known each other for long time that it would unite forever.</p>");
-    	sb.append("<p align=left>Time arrived for bondage. Two hearts web crawled the matrimony and found each other. </p>");
-    	sb.append("<p align=left>Two hearts were engaged on <font color=blue>September 7, 2014.</font></p>");
-    	sb.append("<p align=left>Now, It's the time for the hearts to live unitedly and love each other forever.</p>");
+    	sb.append("<p align=left>Time arrived for bondage. They web crawled the matrimony and found each other. </p>");
+    	sb.append("<p align=left>They were engaged on <font color=blue>September 7, 2014.</font></p>");
+    	sb.append("<p align=left>Now, It's the time for them to live unitedly and love each other forever.</p>");
     	sb.append("<p align=left>Okay!!! Whom these hearts belong to?. It's none other than us</p>");
     	sb.append("<p></p>");
     	sb.append("<p style='align:left'>			<i><font color=blue>Ram Narayan.M</font></i> and <i><font color=blue>Prem Prakasini.G</font></i>			</p>");
@@ -154,11 +155,12 @@ public class NavigationDrawerFragment extends Fragment {
     	sb.append("<p align=left>Wedding grandness is not just about rich decorations, gifts and variety food. </p>");
     	sb.append("<p align=left>It's about the presence of PEOPLE. </p>");
     	sb.append("<p></p>");
-    	sb.append("<p align=left>So, again We invite you all to make our Wedding, a Great Gala Wedding happening in </p>");
-    	sb.append("<p><u>Wedding Venue</u>:</p>");
-    	sb.append("<p>AIOBEU SWASTIKA - L.BALASUBRAMANIAN HALL<br/>");
+    	sb.append("<p align=left>So, again We invite you all to make our Wedding, a Great Gala Wedding happening at </p>");
+    	sb.append("<p><u><font color=blue>Wedding Venue</u>:</font></p>");
+    	sb.append("<p><font color=blue>AIOBEU SWASTIKA - L.BALASUBRAMANIAN HALL<br/>");
     	sb.append("38/10, 7th Street, Dr.Radhakrishnan Salai (Opp. Children Garden School),<br/>");
-    	sb.append("Mylapore, Chennai - 600 004</p>");
+    	sb.append("Mylapore, Chennai - 600 004</font></p>");
+    	sb.append("<p><font color=red>ATTENTION!!! MY WEDDING REMINDER HAS BEEN ADDED BY THIS APP TO YR ANDROID CALENDAR. CHECK YR CALENDAR!!!. ANYWAY YOU WOULD REMEMBER MY WEDDING DATE AND MAKE YR SWEET PRESENCE :)</font></p>");
     	//Wedding Venue goes here
     	
     	invitationView.setText(Html.fromHtml(sb.toString()));
@@ -198,7 +200,10 @@ public class NavigationDrawerFragment extends Fragment {
     	viewPager.setAdapter(pageAdapter);
 
     	
-    	toggleMenuStates(0);    	
+    	toggleMenuStates(0);
+    	
+    	//Adding reminders to the calendar
+    	CalendarEventAdder.addReminder(getActivity());
     }
 
     
