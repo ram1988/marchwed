@@ -1,13 +1,18 @@
 package com.premram.marchwed;
 
+import com.premram.marchwed.adapters.CalendarEventAdder;
+
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,8 +51,12 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        
+        CalendarEventAdder.addReminders(this);    	
     }
 
+    
+    
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments

@@ -203,7 +203,8 @@ public class NavigationDrawerFragment extends Fragment {
     	toggleMenuStates(0);
     	
     	//Adding reminders to the calendar
-    	CalendarEventAdder.addReminder(getActivity());
+    	
+    	//CalendarEventAdder.addReminders(getActivity());
     }
 
     
